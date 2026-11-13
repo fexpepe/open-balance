@@ -1,0 +1,18 @@
+/* Aba "A revisar" (web/js/revisar.js) */
+.revisar-lista li.revisar-grupo { display: block; padding: 14px 0; }
+.revisar-cabeca { display: flex; align-items: center; gap: 12px; }
+.revisar-exemplos { margin-top: 4px; font-size: 12px; }
+.revisar-exemplos summary { cursor: pointer; color: var(--texto-3); width: max-content; }
+.revisar-exemplos ul { list-style: none; margin: 6px 0 0; padding: 0; }
+.revisar-exemplos li { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; padding: 3px 0; border: 0; }
+.revisar-exemplos li > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.revisar-acoes { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-top: 10px; }
+.revisar-acoes .espaco { flex: 1; }
+.revisar-campo { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--texto-3); }
+.revisar-campo input, .revisar-campo select {
+  background: var(--superficie); border: 1px solid var(--borda-forte); border-radius: 10px; padding: 7px 10px;
+  color: var(--texto); font: inherit; font-size: 13px; max-width: 280px;
+}
+.revisar-campo input { width: 230px; }
+.revisar-nota { font-size: 12px; margin-top: 8px; }
+.revisar-grupo .alerta-faixa { margin-top: 10px; }

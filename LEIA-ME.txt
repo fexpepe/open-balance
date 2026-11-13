@@ -1,0 +1,54 @@
+OPEN BALANCE — painel de finanças pessoais (roda só no seu computador)
+=====================================================================
+
+O que é
+  Um painel com contas, cartões, faturas, parcelamentos, assinaturas, categorias de gasto e
+  investimentos. Os dados entram por arquivos que o próprio banco deixa exportar (OFX, CSV,
+  TXT ou Excel). Nada é enviado para a internet: tudo fica na pasta "dados", dentro desta pasta.
+
+1. Instalar o Python (uma vez só)
+  - Baixe em https://www.python.org/downloads/ (versão 3.10 ou mais nova).
+  - Na instalação, marque "Add python.exe to PATH".
+
+2. Abrir
+  - Dê dois cliques em "Abrir Open Balance.bat". O painel abre no navegador.
+  - Para desligar, feche a janela preta que abriu junto.
+
+3. Colocar os seus dados (todo mês)
+  - No app ou site do banco, exporte:
+      • o extrato da conta corrente (de preferência em OFX; CSV/Excel também servem);
+      • a fatura do cartão (a fechada e, se quiser, a atual);
+      • a posição de investimentos (B3: Área do Investidor → Extratos → Posição → Excel),
+        ou preencha o modelo de planilha que está na aba Importar.
+  - No Open Balance, abra a aba "Importar" e arraste os arquivos.
+  - Confira a prévia (conta, vencimento da fatura, saldo) e clique em Importar.
+  - Pode mandar períodos repetidos sem medo: o que já foi importado não duplica.
+    Se errar algo, use "Desfazer" no histórico de importações.
+
+4. Dicas
+  - Informe o seu nome na aba Importar: assim Pix entre as suas próprias contas não
+    contam como gasto.
+  - Ajuste categorias pelo ⋮ de cada transação. Marcando "aplicar a todas que contêm…",
+    vira uma regra que vale para os próximos meses também.
+  - Para o limite do cartão, use Importar → Contas importadas → Editar.
+
+5. Backup
+  - Os seus dados ficam em "dados\open-balance.db".
+  - Todo dia em que o painel abre, ele guarda sozinho uma cópia em "dados\backup"
+    (open-balance-AAAAMMDD.zip). Ficam as cópias da última semana e uma por semana e por mês
+    para trás. Para restaurar: feche o Open Balance, extraia o open-balance.db do .zip e ponha no
+    lugar de "dados\open-balance.db" (apague junto open-balance.db-wal e open-balance.db-shm, se existirem).
+  - As cópias ficam no mesmo computador. Para se proteger de perder o disco, copie de vez em
+    quando um desses .zip para um pendrive ou HD externo.
+  - Não coloque a pasta "dados" em lugares compartilhados.
+
+Opcional: conexão automática pelo Open Finance (Pluggy)
+  Em vez de exportar arquivos todo mês, dá para conectar os bancos pela Pluggy (gratuito para
+  uso pessoal, pelo MeuPluggy). Abra a aba "Importar" e role até "Conectar pelo Open Finance":
+  lá tem o passo a passo e os campos para colar Client ID, Client Secret e Item IDs.
+  Atenção: a Pluggy dá 15 dias de teste e só deixa vincular bancos dentro desse prazo.
+  Dá para usar as duas coisas juntas: alguns bancos conectados, outros por arquivo.
+  Para atualizar sozinho todo dia (sem abrir o painel), abra o Prompt de Comando nesta pasta e
+  rode:  python app.py --agendar   (ou --agendar 21:30 para outro horário; --desagendar desliga).
+  Se a rotina falhar ou parar de rodar, ou se o consentimento de um banco estiver para vencer,
+  aparece um aviso no topo do painel (clique nele para ver o que houve).

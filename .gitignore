@@ -1,0 +1,5 @@
+.env
+dados/
+dados_brutos/
+__pycache__/
+dist/

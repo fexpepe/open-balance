@@ -1,0 +1,87 @@
+/* Aba Importar (arquivos do banco). Usa os tokens de estilo.css. */
+.importar .cartao { margin-bottom: 16px; }
+
+.zona-soltar {
+  display: grid; justify-items: center; gap: 4px; margin-top: 14px; padding: 28px 16px; text-align: center;
+  border: 1.5px dashed var(--borda-forte); border-radius: 12px; background: var(--superficie-2); cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.zona-soltar:hover, .zona-soltar.arrastando { border-color: var(--acento); background: var(--acento-fundo); }
+.zona-soltar input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.zona-soltar:focus-within { outline: 2px solid var(--acento); outline-offset: 2px; }
+.zona-icone { font-size: 26px; line-height: 1; color: var(--acento); }
+
+.dicas { margin-top: 12px; color: var(--texto-2); font-size: 13px; }
+.dicas summary { cursor: pointer; color: var(--texto-2); }
+.dicas ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+
+.previa { display: grid; gap: 12px; }
+.previa.ocupada { opacity: 0.75; }
+.previa-topo { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.previa-arquivo { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.previa-topo .marcador { margin-left: 0; }
+.previa-resumo { color: var(--texto-2); font-size: 13px; }
+.previa-resumo b { color: var(--texto); }
+.previa-nota { font-size: 12px; }
+.previa-acoes { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.previa .alerta-faixa { margin-bottom: 0; }
+.alerta-faixa.erro { border-color: rgba(248, 113, 113, 0.45); background: var(--negativo-fundo); color: #fecaca; }
+
+.grade-form { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); align-items: start; }
+.grade-form .campo input, .grade-form .campo select { width: 100%; min-width: 0; }
+.campo input[type="date"] { color-scheme: dark; }
+
+.tabela-mini td { padding: 7px 10px; font-size: 13px; }
+.tabela-mini .corte { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tabela-mini .marcador { margin-left: 6px; }
+.mapa th { vertical-align: bottom; text-transform: none; letter-spacing: 0; }
+.mapa th select {
+  margin-top: 4px; width: 100%; min-width: 110px; background: var(--superficie); border: 1px solid var(--borda-forte);
+  border-radius: 8px; padding: 5px 6px; font-size: 12px;
+}
+.mapa .corte { max-width: 180px; }
+
+.linha-form { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.linha-form input {
+  flex: 1; min-width: 200px; background: var(--superficie); border: 1px solid var(--borda-forte); border-radius: 10px; padding: 8px 10px;
+}
+.importar .lista .botao { padding: 6px 10px; font-size: 13px; }
+.sinc-giro.girando { display: inline-block; vertical-align: -2px; }
+
+#modal-conta .grade-form { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+
+@media (max-width: 640px) {
+  .importar .lista li { flex-wrap: wrap; }
+  .importar .lista .meio { flex-basis: calc(100% - 50px); }
+  .tabela-mini .corte { max-width: 180px; }
+}
+
+/* Conectar pela Pluggy */
+.conectar { display: grid; gap: 12px; }
+.conectar .cartao-topo { margin-bottom: 0; }
+.tutorial summary { cursor: pointer; color: var(--texto-2); font-size: 13px; margin-bottom: 10px; }
+.tutorial .alerta-faixa { margin-bottom: 12px; }
+.passos { margin: 0 0 12px; padding-left: 22px; display: grid; gap: 10px; color: var(--texto-2); font-size: 13px; }
+.passos li::marker { color: var(--acento); font-weight: 700; }
+.passos b { color: var(--texto); }
+.notas { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 12px; }
+.campo-largo { grid-column: 1 / -1; }
+.campo textarea {
+  background: var(--superficie); border: 1px solid var(--borda-forte); border-radius: 10px; padding: 8px 10px;
+  font: inherit; color: inherit; resize: vertical; width: 100%; min-width: 0;
+}
+
+/* ---------- credenciais da Pluggy: mascaradas até clicar no olho ---------- */
+.campo-segredo { position: relative; display: block; }
+.campo-segredo input, .campo-segredo textarea { padding-right: 42px; }
+.mascarado { -webkit-text-security: disc; }
+@supports not (-webkit-text-security: disc) {
+  .mascarado { color: transparent; text-shadow: 0 0 8px var(--texto); } /* sem o mascaramento nativo: borra o texto */
+}
+.botao-revelar {
+  position: absolute; top: 4px; right: 4px; width: 30px; height: 30px; border: 0; border-radius: 8px;
+  background: transparent; color: var(--texto-3); cursor: pointer; display: grid; place-items: center;
+}
+.botao-revelar:hover { background: var(--superficie-3); color: var(--texto); }
+.botao-revelar .olho-fechado, .botao-revelar[aria-pressed="true"] .olho-aberto { display: none; }
+.botao-revelar[aria-pressed="true"] .olho-fechado { display: block; }

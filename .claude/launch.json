@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "open-balance",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["app.py", "--sem-navegador"],
+      "port": 8765
+    }
+  ]
+}

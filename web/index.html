@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Balance</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234ade80'/><text x='16' y='22' font-size='16' font-family='Segoe UI,sans-serif' font-weight='700' text-anchor='middle' fill='%230b0b0b'>OB</text></svg>">
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="importar.css">
+  <link rel="stylesheet" href="revisar.css">
+  <link rel="stylesheet" href="orcamento.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-linha">
+      <a class="marca" href="#/visao" aria-label="Open Balance — visão geral">
+        <span class="marca-icone">OB</span><span>Open Balance</span>
+      </a>
+      <nav class="areas" id="areas" aria-label="Áreas">
+        <a href="#/visao" data-area="dia">Dia a dia</a>
+        <a href="#/investimentos" data-area="investimentos">Investimentos</a>
+      </nav>
+      <div class="topo-acoes">
+        <div class="seletor-mes" id="seletor-mes">
+          <button class="botao-icone" data-mes="-1" aria-label="Mês anterior">‹</button>
+          <span id="rotulo-mes">—</span>
+          <button class="botao-icone" data-mes="1" aria-label="Próximo mês">›</button>
+        </div>
+        <button class="botao-icone botao-olho" id="botao-privado" aria-pressed="false" title="Ocultar valores" aria-label="Ocultar valores">
+          <svg class="olho-aberto" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="olho-fechado" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.4 0 10 7 10 7a17.6 17.6 0 0 1-2.16 3.19M6.6 6.6A17.4 17.4 0 0 0 2 12s3.6 7 10 7a9.3 9.3 0 0 0 5.4-1.6"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M2 2l20 20"/></svg>
+        </button>
+        <a class="botao botao-fantasma link-importar" href="#/importar" id="link-importar" title="Importar extratos, faturas e posições">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg><span>Importar</span>
+        </a>
+        <div class="sinc">
+          <div class="saude" id="saude" hidden></div>
+          <span class="sinc-status" id="sinc-status"></span>
+          <button class="botao botao-acento" id="botao-sinc" style="display:none">
+            <span class="sinc-giro" aria-hidden="true"></span><span class="sinc-texto">Atualizar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <nav class="abas" id="abas" aria-label="Seções">
+      <a href="#/visao" data-area="dia" data-aba="visao">Visão geral</a>
+      <a href="#/previsao" data-area="dia" data-aba="previsao">Previsão</a>
+      <a href="#/transacoes" data-area="dia" data-aba="transacoes">Transações</a>
+      <a href="#/parcelamentos" data-area="dia" data-aba="parcelamentos">Parcelamentos</a>
+      <a href="#/assinaturas" data-area="dia" data-aba="assinaturas">Assinaturas</a>
+      <a href="#/categorias" data-area="dia" data-aba="categorias">Categorias</a>
+      <a href="#/orcamento" data-area="dia" data-aba="orcamento">Orçamento</a>
+      <a href="#/fechamento" data-area="dia" data-aba="fechamento">Fechamento</a>
+      <a href="#/revisar" data-area="dia" data-aba="revisar">A revisar</a>
+      <a href="#/cartoes" data-area="dia" data-aba="cartoes">Cartões</a>
+      <a href="#/investimentos" data-area="investimentos" data-aba="investimentos" data-sub="resumo" hidden>Resumo</a>
+      <a href="#/investimentos/rentabilidade" data-area="investimentos" data-aba="investimentos" data-sub="rentabilidade" hidden>Rentabilidade</a>
+      <a href="#/investimentos/risco" data-area="investimentos" data-aba="investimentos" data-sub="risco" hidden>Risco</a>
+      <a href="#/investimentos/proventos" data-area="investimentos" data-aba="investimentos" data-sub="proventos" hidden>Proventos</a>
+      <a href="#/investimentos/composicao" data-area="investimentos" data-aba="investimentos" data-sub="composicao" hidden>Composição</a>
+      <a href="#/investimentos/ativos" data-area="investimentos" data-aba="investimentos" data-sub="ativos" hidden>Ativos</a>
+      <a href="#/investimentos/movimentacoes" data-area="investimentos" data-aba="investimentos" data-sub="movimentacoes" hidden>Movimentações</a>
+      <a href="#/investimentos/imposto" data-area="investimentos" data-aba="investimentos" data-sub="imposto" hidden>Imposto</a>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="conteudo" aria-live="polite">
+    <div class="vazio">Carregando…</div>
+  </main>
+
+  <div id="dica" class="dica" role="tooltip" hidden></div>
+  <div id="aviso" class="aviso" role="status" hidden></div>
+
+  <dialog id="modal-transacao" class="modal">
+    <form method="dialog" id="form-transacao">
+      <h2 id="modal-titulo">Editar transação</h2>
+      <p class="modal-sub" id="modal-sub"></p>
+      <label class="campo">Categoria
+        <select id="campo-categoria"></select>
+      </label>
+      <label class="campo">Natureza
+        <select id="campo-natureza"></select>
+        <small>Só despesas, receitas e rendimentos entram nos totais. As demais são movimentações internas.</small>
+      </label>
+      <label class="campo-check"><input type="checkbox" id="campo-oculto"> Ocultar esta transação de todos os totais</label>
+      <fieldset class="regra">
+        <label class="campo-check"><input type="checkbox" id="campo-regra"> Aplicar também a todas as transações que contêm o trecho:</label>
+        <input type="text" id="campo-padrao" autocomplete="off" disabled>
+      </fieldset>
+      <div class="modal-acoes">
+        <button type="button" class="botao botao-fantasma" id="botao-restaurar">Voltar ao automático</button>
+        <span class="espaco"></span>
+        <button type="button" class="botao botao-fantasma" value="cancelar" id="botao-cancelar">Cancelar</button>
+        <button type="submit" class="botao botao-acento" value="salvar">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

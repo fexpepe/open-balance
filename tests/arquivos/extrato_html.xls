@@ -1,0 +1,9 @@
+<html><head><meta charset="utf-8"></head><body>
+<table>
+<tr><td>Extrato</td><td>Banco Exemplo</td></tr>
+<tr><th>Data</th><th>Histórico</th><th>Crédito</th><th>Débito</th></tr>
+<tr><td>03/09/2026</td><td>TED RECEBIDA</td><td>1.000,00</td><td></td></tr>
+<tr><td></td><td>BELTRANO FICTICIO</td><td></td><td></td></tr>
+<tr><td>04/09/2026</td><td>TARIFA PACOTE SERVICOS</td><td></td><td>29,90</td></tr>
+<tr><td>09/09/2026</td><td>POSTO COMBUSTIVEL TESTE</td><td></td><td>200,00</td></tr>
+</table></body></html>

@@ -1,0 +1,6 @@
+﻿Instituição;Nome;Tipo;Saldo;Vencimento;Indexador;Taxa;Quantidade
+XP;CDB Banco Exemplo 2028;CDB;10.000,00;15/03/2028;CDI;110;
+XP;Tesouro IPCA+ 2035;Tesouro;5.000,00;15/05/2035;IPCA;6,2;
+Nubank;Caixinha reserva;Renda fixa;3.000,00;;CDI;100;
+Clear;PETR4;Ações;1.500,00;;;;50
+Clear;HGLG11;FII;1.580,00;;;;10
