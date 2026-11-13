@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS series_diarias (serie TEXT, data TEXT, valor REAL, PR
 """
 URL_YAHOO = ("https://query1.finance.yahoo.com/v8/finance/chart/{}?period1={}&period2={}"
              "&interval=1d&includeAdjustedClose=true")
-URL_CDI_DIARIO = "http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='SGS366_CDI366')"
+URL_CDI_DIARIO = "https://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='SGS366_CDI366')"
 URL_CVM = "https://dados.cvm.gov.br/dados/FI/DOC/INF_DIARIO/DADOS/inf_diario_fi_{}.zip"
 USER_AGENT = "Mozilla/5.0 (open-balance)"
 

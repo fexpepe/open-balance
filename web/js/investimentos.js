@@ -373,7 +373,7 @@ function ligarMetas(classes, total, ui) {
 
 // ============================================================ classes
 function cartaoClasse(cl, totalCarteira) {
-  const linhaTitulo = (p, extra = "") => `<div style="display:flex;align-items:center;gap:10px">${avatarInstituicao(p.instituicao, true)}<div style="min-width:0"><div>${esc(p.nome)}</div>${extra ? `<div class="mudo" style="font-size:12px">${extra}</div>` : ""}</div></div>`;
+  const linhaTitulo = (p, extra = "") => `<div style="display:flex;align-items:center;gap:10px">${avatarInstituicao(p.instituicao, true)}<div style="min-width:0"><div>${esc(p.nome)}</div>${extra ? `<div class="mudo" style="font-size:12px">${esc(extra)}</div>` : ""}</div></div>`;
   const parteClasse = (p) => semSinal((p.saldo / cl.total) * 100);
   const ganhoComLiquido = (p) => p.ganho === null || p.ganho === undefined ? vazio
     : `${comSinal(p.ganho, p.ganhoPct)}${p.ganhoLiquido !== null && p.ganhoLiquido !== undefined && Math.abs(p.ganhoLiquido - p.ganho) > 0.5 ? `<div class="mudo" style="font-size:11px">líquido ${brlSinal(p.ganhoLiquido)}</div>` : ""}`;

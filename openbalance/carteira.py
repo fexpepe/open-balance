@@ -355,7 +355,7 @@ def _baixar_json(url):
 
 
 def _ipeadata(codigo):
-    dados = _baixar_json(f"http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='{codigo}')")
+    dados = _baixar_json(f"https://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='{codigo}')")
     return [(v["VALDATA"][:7], float(v["VALVALOR"])) for v in dados.get("value", [])
             if v.get("VALVALOR") is not None and v["VALDATA"][:4] >= "2015"]
 

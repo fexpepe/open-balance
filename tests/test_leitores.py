@@ -1,7 +1,10 @@
 """Leitura dos arquivos dos bancos (openbalance/leitores.py): OFX, CSV/TXT, XLSX e o "XLS" que é HTML."""
 
+import io
 import unittest
+import zipfile
 from datetime import date
+from unittest import mock
 
 from openbalance import leitores
 from tests.ajudantes import arquivo, gerar_xlsx
@@ -209,6 +212,18 @@ class TestXlsx(unittest.TestCase):
     def test_arquivo_corrompido(self):
         with self.assertRaises(leitores.ErroLeitura):
             leitores.ler_arquivo("x.xlsx", b"PK\x03\x04 isto nao e um zip")
+
+    def test_planilha_que_abre_grande_demais_e_recusada(self):
+        # Zip pequeno que descompacta em muito mais do que o limite: recusado antes de ler qualquer parte.
+        saida = io.BytesIO()
+        with zipfile.ZipFile(saida, "w", zipfile.ZIP_DEFLATED) as z:
+            z.writestr("xl/workbook.xml", b"<workbook/>")
+            z.writestr("xl/sharedStrings.xml", b" " * 2_000_000)
+        conteudo = saida.getvalue()
+        self.assertLess(len(conteudo), 20_000)
+        with mock.patch.object(leitores, "LIMITE_XLSX_ABERTO", 1_000_000):
+            with self.assertRaisesRegex(leitores.ErroLeitura, "grande demais"):
+                leitores.ler_arquivo("x.xlsx", conteudo)
 
 
 class TestHtml(unittest.TestCase):

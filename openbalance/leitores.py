@@ -321,6 +321,7 @@ def ler_csv(texto):
     return [[c.strip() for c in linha] for linha in csv.reader(io.StringIO("\n".join(linhas)), delimiter=melhor)]
 
 
+LIMITE_XLSX_ABERTO = 100_000_000  # bytes somados de todas as partes do .xlsx, já descompactadas
 NS_PLANILHA = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 NS_RELACAO = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
 FORMATOS_DATA = set(range(14, 23)) | {45, 46, 47}
@@ -340,6 +341,9 @@ def ler_xlsx(conteudo):
         arquivo = zipfile.ZipFile(io.BytesIO(conteudo))
     except zipfile.BadZipFile:
         raise ErroLeitura("Arquivo .xlsx corrompido ou incompleto.") from None
+    # Um zip de poucos KB pode declarar gigabytes: confere o tamanho aberto antes de ler qualquer parte.
+    if sum(parte.file_size for parte in arquivo.infolist()) > LIMITE_XLSX_ABERTO:
+        raise ErroLeitura("Planilha grande demais para importar.")
     nomes = set(arquivo.namelist())
 
     compartilhadas = []

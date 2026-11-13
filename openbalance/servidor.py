@@ -22,6 +22,10 @@ TIPOS = {".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".s
          ".png": "image/png", ".ico": "image/x-icon", ".json": "application/json", ".csv": "text/csv"}
 LIMITE_CORPO = 1_000_000
 LIMITE_ARQUIVO = 30_000_000  # arquivos de extrato vêm em base64 dentro do JSON
+# Só carrega e só fala com o próprio painel: um HTML injetado não consegue buscar script de fora nem mandar dados
+# para outro servidor. O estilo inline fica liberado porque a interface usa style="..." em toda parte.
+POLITICA_CONTEUDO = ("default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
+                     "connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'")
 
 
 def criar_servidor(conexao, porta):
@@ -45,6 +49,8 @@ def criar_servidor(conexao, porta):
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
             self.send_header("Referrer-Policy", "no-referrer")
+            self.send_header("Content-Security-Policy", POLITICA_CONTEUDO)
+            self.send_header("X-Frame-Options", "DENY")
             self.end_headers()
             self.wfile.write(dados)
 
@@ -57,6 +63,8 @@ def criar_servidor(conexao, porta):
 
         def _corpo_json(self, limite=LIMITE_CORPO):
             tamanho = int(self.headers.get("Content-Length") or 0)
+            if tamanho < 0:  # read(-1) esperaria o cliente fechar a conexão, prendendo a thread
+                raise ValueError("tamanho do corpo inválido")
             if tamanho > limite:
                 raise ValueError("arquivo grande demais" if limite > LIMITE_CORPO else "corpo grande demais")
             return json.loads(self.rfile.read(tamanho) or b"{}")
