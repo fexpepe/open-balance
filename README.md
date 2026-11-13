@@ -7,6 +7,14 @@ parcelamentos, assinaturas, orçamento e investimentos em um lugar só.
 - **Sem dependências:** Python 3.10 ou mais novo, apenas a biblioteca padrão. A interface é HTML, CSS e JavaScript puros.
 - **Dois jeitos de alimentar:** arquivos exportados do banco (OFX, CSV, TXT, Excel) ou conexão automática pelo Open Finance, via Pluggy.
 
+![Visão geral do mês: resumo, ritmo de gastos, contas, cartões e principais categorias](docs/visao-geral.png)
+
+| Categorias | Cartões |
+| --- | --- |
+| ![Gasto do mês por categoria, comparado com a média de 6 meses](docs/categorias.png) | ![Fatura aberta, limite e parcelas já comprometidas nos próximos meses](docs/cartoes.png) |
+
+As telas acima usam dados fictícios.
+
 ## O que tem
 
 **Dia a dia**
